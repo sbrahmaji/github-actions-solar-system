@@ -78,7 +78,8 @@ jobs:
         - name: push the image to Github Container Registry
           uses: docker/push-action@v4
           with:
-            context:   
-                push: true
-                tags: 'ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}'
+           context: 
+           push: true  
+           tags: 'ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}'
+              
       
