@@ -17,25 +17,25 @@ jobs:
         container: 
           image: node:20
         steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
-           
-        - name: Cache NPM dependencies
-          uses: actions/cache@v3
-          with:
+         - name: Checkout Repository
+           uses: actions/checkout@v4
+
+         - name: Cache NPM dependencies
+           uses: actions/cache@v3
+           with:
             path: ~/.npm
             key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
     
-        - name: Install Dependencies
-          run: npm install
+         - name: Install Dependencies
+           run: npm install
     
-        - name: Unit Testing
-          run: npm test
+         - name: Unit Testing
+           run: npm test
           
-        - name: Archive Test Result
-          if: always()
-          uses: actions/upload-artifact@v3
-          with:
+         - name: Archive Test Result
+           if: always()
+           uses: actions/upload-artifact@v3
+           with:
             name: Mocha-Test-Result
             path: test-results.xml
     code-coverage:
@@ -93,15 +93,18 @@ jobs:
       steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
+
         - name: Install Kubectl configuration
           uses: azure/setup-kubectl
           with:
              version: 'v1.26.0'
+
         - name: set kube context
           uses: azure/k8s-set-context@v3
           with:
              method: kubeconfig
              kubeconfig: '${{ secrets.KUBECONFIG }}'
+
         - name: Run the kubectl command
           run: kubectl version --short -o yaml
 
