@@ -106,7 +106,7 @@ jobs:
              kubeconfig: '${{ secrets.KUBECONFIG }}'
 
         - name: Run the kubectl command
-          run: kubectl version --short -o yaml
+          run: kubectl version --output=yaml
           
         - name: NGINX INGRESS CONTROLLER IP
           run: >
